@@ -1,13 +1,13 @@
 const trophyStats = [
-  { num: '13', label: 'League Titles' },
-  { num: '14', label: 'FA Cups' },
-  { num: '2', label: 'League Cups' },
-  { num: '1', label: "Cup Winners' Cup" },
-]
+  { num: "13", label: "League Titles" },
+  { num: "14", label: "FA Cups" },
+  { num: "2", label: "League Cups" },
+  { num: "1", label: "Cup Winners' Cup" },
+];
 
-import arsenalCrest from '../assets/arsenal-crest.png'
+import arsenalCrest from "../assets/arsenal-crest.png";
 
-export default function Hero() {
+export const Hero: React.FC = () => {
   return (
     <div className="hero">
       <img className="cannon-icon" src={arsenalCrest} alt="Arsenal FC crest" />
@@ -22,5 +22,7 @@ export default function Hero() {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
+
+export default Hero;

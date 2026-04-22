@@ -1,30 +1,34 @@
-import type { TimelineEvent, BadgeType } from '../data/events'
-import TrophyIcons from './TrophyIcon'
+import type { TimelineEvent, BadgeType } from "../data/events";
+import TrophyIcons from "./TrophyIcon";
 
 const badgeClassMap: Record<BadgeType, string> = {
-  trophy: 'badge-trophy',
-  player: 'badge-player',
-  era: 'badge-era',
-  ground: 'badge-ground',
-  moment: 'badge-moment',
-}
+  trophy: "badge-trophy",
+  player: "badge-player",
+  era: "badge-era",
+  ground: "badge-ground",
+  moment: "badge-moment",
+};
 
 const badgeTextMap: Record<BadgeType, string> = {
-  trophy: 'trophy',
-  player: 'legend',
-  era: 'milestone',
-  ground: 'stadium',
-  moment: 'moment',
-}
+  trophy: "trophy",
+  player: "legend",
+  era: "milestone",
+  ground: "stadium",
+  moment: "moment",
+};
 
 interface EventCardProps {
-  event: TimelineEvent
-  isExpanded: boolean
-  onToggle: () => void
+  event: TimelineEvent;
+  isExpanded: boolean;
+  onToggle: () => void;
 }
 
-export default function EventCard({ event, isExpanded, onToggle }: EventCardProps) {
-  const className = `event type-${event.type}${isExpanded ? ' expanded' : ''}`
+export const EventCard: React.FC<EventCardProps> = ({
+  event,
+  isExpanded,
+  onToggle,
+}: EventCardProps) => {
+  const className = `event type-${event.type}${isExpanded ? " expanded" : ""}`;
 
   return (
     <div className={className} onClick={onToggle}>
@@ -37,7 +41,7 @@ export default function EventCard({ event, isExpanded, onToggle }: EventCardProp
           {badgeTextMap[event.badge]}
         </span>
         <div className="event-title">
-          {event.type === 'trophy' && <TrophyIcons title={event.title} />}
+          {event.type === "trophy" && <TrophyIcons title={event.title} />}
           {event.title}
         </div>
         <div className="event-detail">{event.short}</div>
@@ -57,5 +61,7 @@ export default function EventCard({ event, isExpanded, onToggle }: EventCardProp
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
+
+export default EventCard;
