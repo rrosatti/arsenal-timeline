@@ -100,7 +100,7 @@
 
 .event-expand { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
 
-.event.expanded .event-expand { max-height: 250px; }
+.event.expanded .event-expand { max-height: 500px; }
 
 .event-body { font-size: 16px; color: #aaa; line-height: 1.7; padding-top: 8px; border-top: 1px solid #222; margin-top: 8px; }
 
