@@ -94,7 +94,11 @@
 
 .badge-moment { background: rgba(239,1,7,0.12); color: #ff4444; }
 
-.event-title { font-size: 20px; font-weight: 600; color: #f0ece4; line-height: 1.3; }
+.event-title { font-size: 20px; font-weight: 600; color: #f0ece4; line-height: 1.3; display: flex; align-items: center; gap: 6px; }
+
+.trophy-icons { display: inline-flex; gap: 2px; flex-shrink: 0; }
+
+.trophy-icon { width: 22px; height: 22px; }
 
 .event-detail { font-size: 16px; color: #888; font-style: italic; margin-top: 2px; line-height: 1.4; }
 
