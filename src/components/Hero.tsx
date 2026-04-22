@@ -5,10 +5,12 @@ const trophyStats = [
   { num: '1', label: "Cup Winners' Cup" },
 ]
 
+import arsenalCrest from '../assets/arsenal-crest.png'
+
 export default function Hero() {
   return (
     <div className="hero">
-      <span className="cannon-icon">💣</span>
+      <img className="cannon-icon" src={arsenalCrest} alt="Arsenal FC crest" />
       <h1>Arsenal FC</h1>
       <p className="sub">139 Years of The Gunners · 1886 — 2025</p>
       <div className="trophy-count">
