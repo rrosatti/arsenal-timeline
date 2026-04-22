@@ -1,16 +1,16 @@
-import { useState } from 'react'
-import Hero from './components/Hero'
-import FilterBar from './components/FilterBar'
-import Timeline from './components/Timeline'
-import { events, eras } from './data/events'
-import type { EventType } from './data/events'
+import { useState } from "react";
+import Hero from "./components/Hero";
+import FilterBar from "./components/FilterBar";
+import Timeline from "./components/Timeline";
+import { events, eras } from "./data/events";
+import type { EventType } from "./data/events";
 
-export default function App() {
-  const [currentFilter, setCurrentFilter] = useState<EventType | 'all'>('all')
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null)
+export const App = () => {
+  const [currentFilter, setCurrentFilter] = useState<EventType | "all">("all");
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   function handleToggleExpand(index: number) {
-    setExpandedIndex((prev) => (prev === index ? null : index))
+    setExpandedIndex((prev) => (prev === index ? null : index));
   }
 
   return (
@@ -32,5 +32,7 @@ export default function App() {
         Victoria Concordia Crescit — Victory Through Harmony
       </div>
     </div>
-  )
-}
+  );
+};
+
+export default App;
