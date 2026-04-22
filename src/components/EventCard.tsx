@@ -1,4 +1,5 @@
 import type { TimelineEvent, BadgeType } from '../data/events'
+import TrophyIcons from './TrophyIcon'
 
 const badgeClassMap: Record<BadgeType, string> = {
   trophy: 'badge-trophy',
@@ -35,7 +36,10 @@ export default function EventCard({ event, isExpanded, onToggle }: EventCardProp
         <span className={`event-badge ${badgeClassMap[event.badge]}`}>
           {badgeTextMap[event.badge]}
         </span>
-        <div className="event-title">{event.title}</div>
+        <div className="event-title">
+          {event.type === 'trophy' && <TrophyIcons title={event.title} />}
+          {event.title}
+        </div>
         <div className="event-detail">{event.short}</div>
         <div className="event-expand">
           <div className="event-body">
