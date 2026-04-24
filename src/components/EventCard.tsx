@@ -1,4 +1,6 @@
 import type { TimelineEvent, BadgeType } from "../data/events";
+import ChevronIcon from "./ChevronIcon";
+import EventTypeIcon from "./EventTypeIcon";
 import TrophyIcons from "./TrophyIcon";
 
 const badgeClassMap: Record<BadgeType, string> = {
@@ -29,6 +31,7 @@ export const EventCard: React.FC<EventCardProps> = ({
   onToggle,
 }: EventCardProps) => {
   const className = `event type-${event.type}${isExpanded ? " expanded" : ""}`;
+  const [leadStat, ...otherStats] = event.stats;
 
   return (
     <div className={className} onClick={onToggle}>
@@ -37,20 +40,32 @@ export const EventCard: React.FC<EventCardProps> = ({
         <div className="event-dot" />
       </div>
       <div className="event-card">
-        <span className={`event-badge ${badgeClassMap[event.badge]}`}>
-          {badgeTextMap[event.badge]}
-        </span>
-        <div className="event-title">
-          {event.type === "trophy" && <TrophyIcons title={event.title} />}
-          {event.title}
+        <div className="event-topline">
+          <span className={`event-badge ${badgeClassMap[event.badge]}`}>
+            <EventTypeIcon badge={event.badge} />
+            {badgeTextMap[event.badge]}
+          </span>
+          <ChevronIcon expanded={isExpanded} />
+        </div>
+        <div className="event-title-row">
+          <div className="event-title">
+            {event.type === "trophy" && <TrophyIcons title={event.title} />}
+            {event.title}
+          </div>
         </div>
         <div className="event-detail">{event.short}</div>
         <div className="event-expand">
           <div className="event-body">
-            {event.body}
-            {event.stats.length > 0 && (
+            {leadStat && (
+              <div className="event-lead-stat">
+                <span className="event-lead-stat-label">{leadStat.l}</span>
+                <strong className="event-lead-stat-value">{leadStat.v}</strong>
+              </div>
+            )}
+            <p className="event-body-copy">{event.body}</p>
+            {otherStats.length > 0 && (
               <div className="stat-pills">
-                {event.stats.map((stat) => (
+                {otherStats.map((stat) => (
                   <div className="stat-pill" key={stat.l}>
                     {stat.l}: <strong>{stat.v}</strong>
                   </div>
