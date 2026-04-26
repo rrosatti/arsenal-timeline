@@ -1,4 +1,5 @@
 import React from "react";
+import { getEventId } from "../data/events";
 import type { Era, TimelineEvent, EventType } from "../data/events";
 import EventCard from "./EventCard";
 
@@ -30,7 +31,7 @@ export const EraBlock: React.FC<EraBlockProps> = ({
   if (!hasVisible) return null;
 
   return (
-    <div className="era-block">
+    <section className="era-block" id={era.id}>
       <div className="era-header">
         <div className="era-kicker">Era</div>
         <div className="era-heading-row">
@@ -40,6 +41,7 @@ export const EraBlock: React.FC<EraBlockProps> = ({
         <div className="era-meta">
           <span>{visibleCount} events</span>
         </div>
+        <p className="era-intro">{era.intro}</p>
       </div>
       {events.map((event, i) => {
         const globalIndex = globalIndexOffset + i;
@@ -49,14 +51,15 @@ export const EraBlock: React.FC<EraBlockProps> = ({
 
         return (
           <EventCard
-            key={globalIndex}
+            key={getEventId(event)}
+            eventId={getEventId(event)}
             event={event}
             isExpanded={expandedIndex === globalIndex}
             onToggle={() => onToggleExpand(globalIndex)}
           />
         );
       })}
-    </div>
+    </section>
   );
 };
 
