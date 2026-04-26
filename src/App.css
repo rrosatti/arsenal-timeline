@@ -353,7 +353,171 @@ html {
 }
 
 .alt-view-list-legends {
-  gap: 0.7rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0.9rem;
+}
+
+.legend-card {
+  padding: 1rem 1rem 1.05rem;
+  border-radius: 20px;
+  background:
+    linear-gradient(135deg, rgba(42, 164, 93, 0.08), transparent 42%),
+    rgba(17, 18, 18, 0.9);
+  border: 1px solid rgba(42, 164, 93, 0.14);
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  scroll-margin-top: 170px;
+}
+
+.legend-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(42, 164, 93, 0.22);
+}
+
+.legend-card.expanded {
+  background:
+    linear-gradient(135deg, rgba(42, 164, 93, 0.11), transparent 38%),
+    rgba(22, 24, 24, 0.98);
+  border-color: rgba(42, 164, 93, 0.24);
+  box-shadow:
+    0 26px 70px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.legend-card-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.legend-card-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.32rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(42, 164, 93, 0.12);
+  color: #8de5b0;
+  font-size: 11px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.legend-card-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.legend-card-share {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 16px;
+}
+
+.legend-card-year {
+  margin-top: 1rem;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 20px;
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.34);
+}
+
+.legend-card-title {
+  margin-top: 0.25rem;
+  font-size: 22px;
+  line-height: 1.25;
+  color: #f2ede5;
+}
+
+.legend-card-short {
+  margin-top: 0.45rem;
+  color: #a79d91;
+  line-height: 1.5;
+}
+
+.legend-card-highlight {
+  display: grid;
+  gap: 0.18rem;
+  margin-top: 1rem;
+  padding: 0.8rem 0.9rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.legend-card-highlight span,
+.legend-card-stat span {
+  font-size: 11px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.48);
+}
+
+.legend-card-highlight strong {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 28px;
+  line-height: 1;
+  color: #f8f3ea;
+}
+
+.legend-card-stat-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 0.8rem;
+}
+
+.legend-card-stat {
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.7rem 0.75rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.legend-card-stat strong {
+  color: #ddd4c6;
+  line-height: 1.35;
+}
+
+.legend-card-expand {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.45s ease;
+}
+
+.legend-card.expanded .legend-card-expand {
+  max-height: 420px;
+}
+
+.legend-card-body {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: #b4ada3;
+  line-height: 1.7;
+}
+
+.legend-card-body p {
+  margin: 0;
 }
 
 .timeline-line {
@@ -977,11 +1141,13 @@ html {
   .filter-btn,
   .event,
   .event-card,
+  .legend-card,
   .event-dot,
   .event-year,
   .event-expand,
   .event-chevron,
-  .event-share-link {
+  .event-share-link,
+  .legend-card-expand {
     transition: none;
   }
 }
