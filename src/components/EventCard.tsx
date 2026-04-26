@@ -20,21 +20,27 @@ const badgeTextMap: Record<BadgeType, string> = {
 };
 
 interface EventCardProps {
+  eventId: string;
   event: TimelineEvent;
   isExpanded: boolean;
   onToggle: () => void;
 }
 
 export const EventCard: React.FC<EventCardProps> = ({
+  eventId,
   event,
   isExpanded,
   onToggle,
 }: EventCardProps) => {
-  const className = `event type-${event.type}${isExpanded ? " expanded" : ""}`;
+  const className = `event type-${event.type}${event.featured ? " featured" : ""}${isExpanded ? " expanded" : ""}`;
   const [leadStat, ...otherStats] = event.stats;
 
+  function handleShare(eventClick: React.MouseEvent<HTMLAnchorElement>) {
+    eventClick.stopPropagation();
+  }
+
   return (
-    <div className={className} onClick={onToggle}>
+    <div className={className} id={eventId} onClick={onToggle}>
       <div className="event-year">{event.year}</div>
       <div className="event-dot-wrap">
         <div className="event-dot" />
@@ -45,15 +51,37 @@ export const EventCard: React.FC<EventCardProps> = ({
             <EventTypeIcon badge={event.badge} />
             {badgeTextMap[event.badge]}
           </span>
-          <ChevronIcon expanded={isExpanded} />
+          <div className="event-actions">
+            <a
+              className="event-share-link"
+              href={`#${eventId}`}
+              onClick={handleShare}
+              aria-label={`Link to ${event.title}`}
+              title="Copyable link"
+            >
+              #
+            </a>
+            <ChevronIcon expanded={isExpanded} />
+          </div>
         </div>
         <div className="event-title-row">
           <div className="event-title">
             {event.type === "trophy" && <TrophyIcons title={event.title} />}
             {event.title}
+            {event.featured && <span className="featured-flag">Featured</span>}
           </div>
         </div>
         <div className="event-detail">{event.short}</div>
+        {event.details && event.details.length > 0 && (
+          <div className="event-meta-row">
+            {event.details.map((detail) => (
+              <div className="event-meta-pill" key={`${detail.l}-${detail.v}`}>
+                <span>{detail.l}</span>
+                <strong>{detail.v}</strong>
+              </div>
+            ))}
+          </div>
+        )}
         <div className="event-expand">
           <div className="event-body">
             {leadStat && (
