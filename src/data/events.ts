@@ -13,13 +13,28 @@ export interface TimelineEvent {
   title: string;
   short: string;
   body: string;
+  featured?: boolean;
+  details?: Stat[];
   stats: Stat[];
 }
 
 export interface Era {
+  id: string;
   label: string;
+  intro: string;
   years: [number, number];
 }
+
+const slugify = (value: string) =>
+  value
+    .toLowerCase()
+    .replace(/['".]/g, "")
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
+export const getEventId = (event: TimelineEvent) =>
+  `event-${event.year}-${slugify(event.title)}`;
 
 export const events: TimelineEvent[] = [
   {
@@ -29,6 +44,11 @@ export const events: TimelineEvent[] = [
     title: "Dial Square FC founded",
     short: "Munitions workers at Royal Arsenal form a football club",
     body: "Led by Scotsman David Danskin, workers from the Dial Square gun workshop in Woolwich formed a football club. Danskin bought the club's first football himself. Their first recorded match was on 11 December 1886.",
+    featured: true,
+    details: [
+      { l: "Category", v: "Founding" },
+      { l: "Area", v: "Woolwich" },
+    ],
     stats: [
       { l: "Founded by", v: "David Danskin" },
       { l: "Location", v: "Woolwich, SE London" },
@@ -74,6 +94,11 @@ export const events: TimelineEvent[] = [
     title: "Move to Highbury",
     short: "Archibald Leitch designs a new stadium in North London",
     body: "Henry Norris engineered the controversial move from Woolwich to a new ground at Highbury, designed by renowned football architect Archibald Leitch. The Art Deco East and West Stands would later become some of football's most celebrated architecture.",
+    featured: true,
+    details: [
+      { l: "Ground", v: "Highbury" },
+      { l: "Area", v: "Islington" },
+    ],
     stats: [
       { l: "Opened", v: "1913" },
       { l: "Peak capacity", v: "~60,000" },
@@ -110,6 +135,11 @@ export const events: TimelineEvent[] = [
     title: "First FA Cup",
     short: "Beat Huddersfield 2–0 at Wembley",
     body: "Arsenal won their first major trophy, defeating Huddersfield Town 2–0 in the FA Cup final at Wembley. Alex James and Jack Lambert scored. It was the start of a golden decade under Herbert Chapman.",
+    featured: true,
+    details: [
+      { l: "Competition", v: "FA Cup final" },
+      { l: "Venue", v: "Wembley" },
+    ],
     stats: [
       { l: "Opponents", v: "Huddersfield Town" },
       { l: "Score", v: "2–0" },
@@ -255,6 +285,11 @@ export const events: TimelineEvent[] = [
     title: "The Double",
     short: "FA Cup and First Division in the same season",
     body: "Under Bertie Mee and coach Don Howe, Arsenal achieved the Double — only the second club in the 20th century to do so. Charlie George's iconic extra-time strike at Wembley against Liverpool, followed by him lying flat on the turf in celebration, became one of football's most enduring images.",
+    featured: true,
+    details: [
+      { l: "Season", v: "1970–71" },
+      { l: "Manager", v: "Bertie Mee" },
+    ],
     stats: [
       { l: "FA Cup final", v: "2–1 vs Liverpool AET" },
       { l: "Manager", v: "Bertie Mee" },
@@ -330,6 +365,11 @@ export const events: TimelineEvent[] = [
     title: "Michael Thomas — the last kick",
     short: "League title won at Anfield on goals scored",
     body: "Arsenal needed to beat Liverpool by two goals at Anfield on the final night of the season. Alan Smith scored first. Then in injury time, Michael Thomas raced through and poked the ball past Grobbelaar. George Graham's men celebrated on the Anfield pitch. Brian Moore's \"It's up for grabs now!\" echoes forever.",
+    featured: true,
+    details: [
+      { l: "Match", v: "Liverpool vs Arsenal" },
+      { l: "Venue", v: "Anfield" },
+    ],
     stats: [
       { l: "Needed", v: "Win by 2 goals" },
       { l: "Result", v: "2–0 at Anfield" },
@@ -432,6 +472,11 @@ export const events: TimelineEvent[] = [
     title: "Premier League & FA Cup Double",
     short: "Wenger's first Double with Bergkamp, Vieira, Overmars",
     body: "Arsenal's first Double in 27 years was built on a magnificent French-British spine: Seaman, Adams, Vieira, Bergkamp. A run of 10 wins from 10 in the final stretch sealed the title. Marc Overmars was electric; Nicolas Anelka led the line. It announced a new Arsenal to the world.",
+    featured: true,
+    details: [
+      { l: "Season", v: "1997–98" },
+      { l: "Manager", v: "Arsène Wenger" },
+    ],
     stats: [
       { l: "Title clinched", v: "With 5 games to spare" },
       { l: "FA Cup final", v: "2–0 vs Newcastle" },
@@ -546,6 +591,11 @@ export const events: TimelineEvent[] = [
     title: "The Invincibles",
     short: "38 games. 26 wins. 12 draws. 0 defeats.",
     body: "Arsenal completed the 2003–04 Premier League season without a single defeat — the only team to do so in the Premier League era. Henry (30 goals), Bergkamp, Pires, Ljungberg, Vieira, Ashley Cole, Sol Campbell. Wenger called it his masterpiece. The gold Premier League trophy, awarded specially by the league, sits permanently at the Emirates.",
+    featured: true,
+    details: [
+      { l: "Competition", v: "Premier League" },
+      { l: "Season", v: "2003–04" },
+    ],
     stats: [
       { l: "Record", v: "P38 W26 D12 L0" },
       { l: "Points", v: "90" },
@@ -623,8 +673,14 @@ export const events: TimelineEvent[] = [
     type: "era",
     badge: "moment",
     title: "Champions League Final",
-    short: "Arsenal's only Champions League final — lost to Barcelona despite leading",
+    short:
+      "Arsenal's only Champions League final — lost to Barcelona despite leading",
     body: "Arsenal reached the Champions League final in Paris, their first and only final in the competition. Sol Campbell headed Arsenal ahead, and they played most of the match with ten men after Jens Lehmann's sending off. But late goals from Samuel Eto'o and Juliano Belletti gave Barcelona a 2–1 victory. It remains Arsenal's closest brush with Champions League glory.",
+    featured: true,
+    details: [
+      { l: "Competition", v: "Champions League final" },
+      { l: "Venue", v: "Paris" },
+    ],
     stats: [
       { l: "Score", v: "1–2 vs Barcelona" },
       { l: "Arsenal scorer", v: "Sol Campbell" },
@@ -703,6 +759,11 @@ export const events: TimelineEvent[] = [
     title: "FA Cup — ending the 9-year drought",
     short: "3–2 vs Hull after being 2–0 down in 8 minutes",
     body: "One of Wembley's most dramatic finals. Arsenal were 2–0 down inside 8 minutes. Three goals — Koscielny, Cazorla (pen), then Aaron Ramsey in extra time — completed an extraordinary comeback. The drought was over. The Wenger era had one more chapter.",
+    featured: true,
+    details: [
+      { l: "Competition", v: "FA Cup final" },
+      { l: "Venue", v: "Wembley" },
+    ],
     stats: [
       { l: "Score", v: "3–2 AET vs Hull City" },
       { l: "Drought broken", v: "9 years" },
@@ -777,8 +838,14 @@ export const events: TimelineEvent[] = [
     type: "era",
     badge: "moment",
     title: "Europa League Final",
-    short: "Arsenal's second UEFA Cup/Europa League final — beaten 4–1 by Chelsea in Baku",
+    short:
+      "Arsenal's second UEFA Cup/Europa League final — beaten 4–1 by Chelsea in Baku",
     body: "Arsenal reached the Europa League final in 2019, setting up an all-London European showpiece against Chelsea in Baku. Alex Iwobi scored off the bench, but Chelsea pulled away in the second half to win 4–1. The defeat denied Arsenal a return to the Champions League and stands as another painful near-miss in Europe.",
+    featured: true,
+    details: [
+      { l: "Competition", v: "Europa League final" },
+      { l: "Venue", v: "Baku" },
+    ],
     stats: [
       { l: "Score", v: "1–4 vs Chelsea" },
       { l: "Venue", v: "Baku Olympic Stadium" },
@@ -818,6 +885,11 @@ export const events: TimelineEvent[] = [
     title: "FA Cup — Arteta's first trophy",
     short: "2–1 vs Chelsea with Aubameyang scoring twice",
     body: "Mikel Arteta, appointed just seven months earlier, guided Arsenal to FA Cup glory. Pierre-Emerick Aubameyang was magnificent, scoring twice including an audacious chip. Arsenal lifted their 14th FA Cup — more than any other club in history.",
+    featured: true,
+    details: [
+      { l: "Competition", v: "FA Cup final" },
+      { l: "Manager", v: "Mikel Arteta" },
+    ],
     stats: [
       { l: "Score", v: "2–1 vs Chelsea" },
       { l: "Scorer", v: "Aubameyang (2)" },
@@ -883,6 +955,11 @@ export const events: TimelineEvent[] = [
     title: "Champions League return",
     short: "Back in the last eight for the first time since 2010",
     body: "Arsenal reached the Champions League quarter-finals in 2023–24, their deepest run in the competition since 2010. They faced Bayern Munich in an agonising tie. Alongside another Premier League title challenge, the club is firmly re-established as a European force under Arteta.",
+    featured: true,
+    details: [
+      { l: "Competition", v: "Champions League" },
+      { l: "Season", v: "2023–24" },
+    ],
     stats: [
       { l: "CL stage", v: "Quarter-finals" },
       { l: "Opponents", v: "Bayern Munich" },
@@ -892,11 +969,53 @@ export const events: TimelineEvent[] = [
 ];
 
 export const eras: Era[] = [
-  { label: "The Woolwich Years · 1886–1912", years: [1886, 1912] },
-  { label: "The Chapman Dynasty · 1913–1945", years: [1913, 1945] },
-  { label: "Post-War & the Double · 1946–1975", years: [1946, 1975] },
-  { label: "Graham & George · 1976–1995", years: [1976, 1995] },
-  { label: "The Wenger Era · 1996–2017", years: [1996, 2017] },
-  { label: "Post-Wenger Transition · 2018–2019", years: [2018, 2019] },
-  { label: "Arteta's Arsenal · 2020–Present", years: [2020, 2030] },
+  {
+    id: "woolwich-years",
+    label: "The Woolwich Years · 1886–1912",
+    intro:
+      "A club built by workers, shaped by south-east London, and pushed forward by sheer survival instinct.",
+    years: [1886, 1912],
+  },
+  {
+    id: "chapman-dynasty",
+    label: "The Chapman Dynasty · 1913–1945",
+    intro:
+      "The move north, the rise of Herbert Chapman, and the decade that turned Arsenal into a giant.",
+    years: [1913, 1945],
+  },
+  {
+    id: "post-war-double",
+    label: "Post-War & the Double · 1946–1975",
+    intro:
+      "Recovery after the war, another league peak, and the unforgettable swagger of the 1971 Double.",
+    years: [1946, 1975],
+  },
+  {
+    id: "graham-george",
+    label: "Graham & George · 1976–1995",
+    intro:
+      "Steel, discipline, cup drama, and a side that learned how to win the hard way.",
+    years: [1976, 1995],
+  },
+  {
+    id: "wenger-era",
+    label: "The Wenger Era · 1996–2017",
+    intro:
+      "A revolution in style, diet, scouting, and ambition that produced some of Arsenal's most beautiful football.",
+    years: [1996, 2017],
+  },
+  {
+    id: "post-wenger-transition",
+    label: "Post-Wenger Transition · 2018–2019",
+    intro:
+      "A short, uneasy reset between eras, with near-misses in Europe and a search for a new direction.",
+    years: [2018, 2019],
+  },
+  {
+    id: "artetas-arsenal",
+    label: "Arteta's Arsenal · 2020–Present",
+    intro:
+      "A young squad, a restored identity, and a climb back toward the top of English and European football.",
+    years: [2020, 2030],
+  },
 ];
