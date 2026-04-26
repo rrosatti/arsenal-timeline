@@ -404,7 +404,7 @@ export const events: TimelineEvent[] = [
     badge: "trophy",
     title: "UEFA Cup Winners' Cup",
     short: "Beat Parma 1–0 in Copenhagen — Alan Smith scores",
-    body: "Arsenal won their only European trophy in Copenhagen, beating Italian giants Parma 1–0 with a Alan Smith goal. It remains the club's sole European silverware and cemented George Graham's reputation as a tactician of the highest order.",
+    body: "Arsenal won the European Cup Winners' Cup in Copenhagen, beating Italian giants Parma 1–0 with an Alan Smith goal. It remains the club's only UEFA competition triumph and cemented George Graham's reputation as a tactician of the highest order.",
     stats: [
       { l: "Score", v: "1–0 vs Parma" },
       { l: "Scorer", v: "Alan Smith" },
@@ -507,7 +507,7 @@ export const events: TimelineEvent[] = [
     badge: "player",
     title: "Freddie Ljungberg — the red-haired Swede",
     short: "Scored in consecutive FA Cup finals, key to two Doubles",
-    body: "Freddie Ljungberg signed from Halmstad in 1998 and became one of Wenger's most dynamic attackers. His pace, timing of runs, and eye for goal made him a nightmare for defenders. He scored in the 2001 and 2002 FA Cup finals — back-to-back winners — and was a crucial member of the Invincibles squad. His dyed red hair made him one of the most recognisable players in the Premier League.",
+    body: "Freddie Ljungberg signed from Halmstad in 1998 and became one of Wenger's most dynamic attackers. His pace, timing of runs, and eye for goal made him a nightmare for defenders. He scored in the 2001 and 2002 FA Cup finals, and his strike against Chelsea helped Arsenal complete the 2002 Double. He was also a crucial member of the Invincibles squad. His dyed red hair made him one of the most recognisable players in the Premier League.",
     stats: [
       { l: "Goals", v: "72" },
       { l: "Appearances", v: "328" },
@@ -623,8 +623,8 @@ export const events: TimelineEvent[] = [
     type: "era",
     badge: "moment",
     title: "Champions League Final",
-    short: "Arsenal's only European final — lost to Barcelona despite leading",
-    body: "Arsenal reached the Champions League final in Paris, their first and only European final. Sol Campbell headed Arsenal ahead, and they played most of the match with ten men after Jens Lehmann's sending off. But late goals from Samuel Eto'o and Juliano Belletti gave Barcelona a 2–1 victory. It remains Arsenal's closest brush with European glory.",
+    short: "Arsenal's only Champions League final — lost to Barcelona despite leading",
+    body: "Arsenal reached the Champions League final in Paris, their first and only final in the competition. Sol Campbell headed Arsenal ahead, and they played most of the match with ten men after Jens Lehmann's sending off. But late goals from Samuel Eto'o and Juliano Belletti gave Barcelona a 2–1 victory. It remains Arsenal's closest brush with Champions League glory.",
     stats: [
       { l: "Score", v: "1–2 vs Barcelona" },
       { l: "Arsenal scorer", v: "Sol Campbell" },
@@ -727,10 +727,10 @@ export const events: TimelineEvent[] = [
     badge: "trophy",
     title: "FA Cup retained",
     short: "Back-to-back: 4–0 vs Aston Villa at Wembley",
-    body: "Arsenal retained the FA Cup with a dominant display against Aston Villa, winning 4–0. Alexis Sánchez was brilliant, scoring twice. It was Arsenal's 12th FA Cup — more than any other club at the time.",
+    body: "Arsenal retained the FA Cup with a dominant display against Aston Villa, winning 4–0. Alexis Sánchez was brilliant and scored a spectacular second goal as Arsenal cruised clear. It was Arsenal's 12th FA Cup — more than any other club at the time.",
     stats: [
       { l: "Score", v: "4–0 vs Aston Villa" },
-      { l: "Alexis Sánchez", v: "2 goals" },
+      { l: "Scorers", v: "Walcott, Sánchez, Mertesacker, Giroud" },
     ],
   },
   {
@@ -770,6 +770,19 @@ export const events: TimelineEvent[] = [
       { l: "PL titles", v: "3" },
       { l: "FA Cups", v: "7" },
       { l: "Years", v: "22" },
+    ],
+  },
+  {
+    year: 2019,
+    type: "era",
+    badge: "moment",
+    title: "Europa League Final",
+    short: "Arsenal's second UEFA Cup/Europa League final — beaten 4–1 by Chelsea in Baku",
+    body: "Arsenal reached the Europa League final in 2019, setting up an all-London European showpiece against Chelsea in Baku. Alex Iwobi scored off the bench, but Chelsea pulled away in the second half to win 4–1. The defeat denied Arsenal a return to the Champions League and stands as another painful near-miss in Europe.",
+    stats: [
+      { l: "Score", v: "1–4 vs Chelsea" },
+      { l: "Venue", v: "Baku Olympic Stadium" },
+      { l: "Arsenal scorer", v: "Alex Iwobi" },
     ],
   },
   {
@@ -834,7 +847,7 @@ export const events: TimelineEvent[] = [
     stats: [
       { l: "Season", v: "2022–23" },
       { l: "Points", v: "84 (2nd)" },
-      { l: "Games led PL", v: "247 days at top" },
+      { l: "Games led PL", v: "248 days at top" },
     ],
   },
   {
@@ -884,5 +897,6 @@ export const eras: Era[] = [
   { label: "Post-War & the Double · 1946–1975", years: [1946, 1975] },
   { label: "Graham & George · 1976–1995", years: [1976, 1995] },
   { label: "The Wenger Era · 1996–2017", years: [1996, 2017] },
-  { label: "Arteta's Arsenal · 2018–Present", years: [2018, 2030] },
+  { label: "Post-Wenger Transition · 2018–2019", years: [2018, 2019] },
+  { label: "Arteta's Arsenal · 2020–Present", years: [2020, 2030] },
 ];
