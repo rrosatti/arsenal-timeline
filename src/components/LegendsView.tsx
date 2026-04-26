@@ -1,6 +1,6 @@
 import { getEventId } from "../data/events";
 import type { TimelineEvent } from "../data/events";
-import EventCard from "./EventCard";
+import LegendCard from "./LegendCard";
 
 interface LegendsViewProps {
   events: TimelineEvent[];
@@ -70,7 +70,7 @@ export const LegendsView: React.FC<LegendsViewProps> = ({
               const index = events.indexOf(event);
 
               return (
-                <EventCard
+                <LegendCard
                   key={getEventId(event)}
                   eventId={getEventId(event)}
                   event={event}
